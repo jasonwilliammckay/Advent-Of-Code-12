@@ -243,3 +243,5 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/AdventOfCode_12/Advent12_Test.pyc
+/AdventOfCode_12/AdventOfCode_12.pyc
