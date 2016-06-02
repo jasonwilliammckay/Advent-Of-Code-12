@@ -2,9 +2,14 @@
 
 import json
 
+""" parseDict() accepts a unicode dictionary and iterates through it, keeping a running 
+sum of integer values. Data can be nested several layers deep, so it uses recursion to 
+solve this. To follow part 2 of a question, if 'red' is ever found as a value in a 
+dictionary, the result of it and all children are automatically zero. There's no need 
+to continue the operation. """
+
 def parseDict(data):
     total = 0
-    red = False
 
     for key, value in data.items():
         if type(value) is dict:
@@ -14,9 +19,14 @@ def parseDict(data):
         elif type(value) is int:
             total += value
         elif type(value) is unicode and value == 'red':
-            red = True
+            return 0
 
-    return (0) if (red == True) else (total)
+    return total
+
+""" parseList() accepts a list and iterates through it, keeping a running sum of
+integer values. Unlike parseDict(), it does not care if a value is 'red' or not,
+and will simply ignore it as a non-integer, though it will still process child
+lists and dicts normally. """
 
 def parseList(data):
     total = 0
@@ -33,5 +43,5 @@ def parseList(data):
 
 if __name__ == '__main__':
     data = json.loads(open('input.json','r').read())
-    total = parseDict(data)
+    if (data is not None): total = parseDict(data)
     print ("The sum of everything, excluding 'red' objects, is {:,d}.".format(total))
