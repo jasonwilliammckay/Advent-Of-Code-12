@@ -31,13 +31,13 @@ lists and dicts normally. """
 def parseList(data):
     total = 0
     
-    for i in data:
-        if (type(i) is dict):
-            total += parseDict(i)
-        elif (type(i) is list):
-            total += parseList(i)
-        elif (type(i) is int):
-            total += i
+    for value in data:
+        if type(value) is dict:
+            total += parseDict(value)
+        elif type(value) is list:
+            total += parseList(value)
+        elif type(value) is int:
+            total += value
 
     return total
 
